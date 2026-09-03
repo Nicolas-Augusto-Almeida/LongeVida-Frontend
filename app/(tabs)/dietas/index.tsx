@@ -9,6 +9,7 @@ import { dietas } from '../../../src/data/mockData';
 
 export default function MinhasDietas() {
   return (
+    <View style={styles.wrapper}>
     <Screen contentStyle={{ paddingBottom: 100 }}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Minhas Dietas</Text>
@@ -62,15 +63,17 @@ export default function MinhasDietas() {
           </View>
         )}
       </View>
+    </Screen>
 
       <Fab color={colors.primary} onPress={() => router.push('/(tabs)/dietas/criar')}>
         <Feather name="plus" size={30} color={colors.white} />
       </Fab>
-    </Screen>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: { flex: 1, backgroundColor: colors.background },
   header: { backgroundColor: colors.primary, paddingTop: 56, paddingHorizontal: spacing.lg, paddingBottom: spacing.lg, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
   headerTitle: { fontSize: fontSize.xl, color: colors.white, fontWeight: '700' },
   headerSubtitle: { fontSize: fontSize.base, color: 'rgba(255,255,255,0.9)', marginTop: 6 },
