@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "LongeVida",
+    "slug": "longevida",
+    "scheme": "longevida",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#4CAF50"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.longevida.app"
+    },
+    "android": {
+      "package": "com.longevida.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#4CAF50"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": ["expo-router"]
+  }
+}
