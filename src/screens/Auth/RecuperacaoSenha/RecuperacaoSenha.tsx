@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import { AppButton, AppTextField, IconCircle } from '../../../components';
 import { colors } from '../../../theme/colors';
 import { fontSize, radius, spacing } from '../../../theme/typography';
+import { emailValido } from '../../../utils/inputFilters';
 
 import { styles } from './RecuperacaoSenha.styles';
 
@@ -13,7 +14,7 @@ export default function RecuperacaoSenha() {
   const [enviado, setEnviado] = useState(false);
 
   const handleEnviar = () => {
-    if (email) setEnviado(true);
+    if (emailValido(email)) setEnviado(true);
   };
 
   return (
@@ -35,12 +36,10 @@ export default function RecuperacaoSenha() {
         )}
 
         <View style={styles.form}>
-          <AppTextField
+          <AppTextField filter="email"
             label="E-mail"
             value={email}
             onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
             icon={<Feather name="mail" size={20} color={colors.mutedForeground} />}
           />
           <AppButton title="Enviar Link de Recuperação" color={colors.secondary} onPress={handleEnviar} />
