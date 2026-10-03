@@ -48,8 +48,8 @@ export default function PrimeiroAcesso() {
         </View>
 
         <View style={styles.form}>
-          <AppTextField label="Peso (kg)" value={peso} onChangeText={setPeso} keyboardType="numeric" icon={<Feather name="anchor" size={20} color={colors.mutedForeground} />} />
-          <AppTextField label="Altura (cm)" value={altura} onChangeText={setAltura} keyboardType="numeric" icon={<Feather name="bar-chart-2" size={20} color={colors.mutedForeground} />} />
+          <AppTextField filter="decimal" maxValue={500} label="Peso (kg)" value={peso} onChangeText={setPeso} icon={<Feather name="anchor" size={20} color={colors.mutedForeground} />} />
+          <AppTextField filter="inteiro" maxValue={250} label="Altura (cm)" value={altura} onChangeText={setAltura} icon={<Feather name="bar-chart-2" size={20} color={colors.mutedForeground} />} />
 
           <AppSelect
             label="Nível de Atividade Física"

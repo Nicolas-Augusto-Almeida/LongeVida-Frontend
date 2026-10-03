@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import { AppButton, AppTextField, IconCircle } from '../../../components';
 import { colors } from '../../../theme/colors';
 import { fontSize, spacing } from '../../../theme/typography';
+import { emailValido } from '../../../utils/inputFilters';
 
 import { styles } from './Login.styles';
 
@@ -13,7 +14,7 @@ export default function Login() {
   const [senha, setSenha] = useState('');
 
   const handleLogin = () => {
-    if (email && senha) {
+    if (emailValido(email) && senha) {
       router.replace('/(tabs)/home');
     }
   };
@@ -30,15 +31,13 @@ export default function Login() {
         </View>
 
         <View style={styles.form}>
-          <AppTextField
+          <AppTextField filter="email"
             label="E-mail"
             value={email}
             onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
             icon={<Feather name="mail" size={20} color={colors.mutedForeground} />}
           />
-          <AppTextField
+          <AppTextField filter="senha"
             label="Senha"
             value={senha}
             onChangeText={setSenha}
