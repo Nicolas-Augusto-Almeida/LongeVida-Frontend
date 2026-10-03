@@ -16,6 +16,7 @@ import {
 import { colors } from '../../theme/colors';
 import { fontSize, radius, spacing } from '../../theme/typography';
 import { bancoDadosAlimentos } from '../../data/mockData';
+import { horarioValido } from '../../utils/inputFilters';
 
 import { styles } from './RegistrarRefeicao.styles';
 
@@ -87,7 +88,7 @@ export default function RegistroRefeicao() {
     [alimentosAdicionados]
   );
 
-  const podeRegistrar = !!nomeRefeicao && !!horario && alimentosAdicionados.length > 0;
+  const podeRegistrar = !!nomeRefeicao && horarioValido(horario) && alimentosAdicionados.length > 0;
 
   const handleRegistrar = () => {
     if (podeRegistrar) router.back();
@@ -105,13 +106,13 @@ export default function RegistroRefeicao() {
             </IconCircle>
           </View>
           <View style={{ gap: spacing.md, marginTop: spacing.md }}>
-            <AppTextField
+            <AppTextField filter="texto" maxLength={40}
               label="Nome da Refeição"
               value={nomeRefeicao}
               onChangeText={setNomeRefeicao}
               placeholder="Ex: Café da manhã, Almoço, Jantar"
             />
-            <AppTextField
+            <AppTextField filter="horario"
               label="Horário"
               value={horario}
               onChangeText={setHorario}
@@ -127,7 +128,7 @@ export default function RegistroRefeicao() {
             <AppSelect label="Selecione um Alimento" value={alimentoSelecionadoId} onChange={setAlimentoSelecionadoId} options={OPCOES_ALIMENTOS} />
             <View style={styles.addRow}>
               <View style={{ flex: 1 }}>
-                <AppTextField label="Quantidade" value={quantidade} onChangeText={setQuantidade} keyboardType="numeric" placeholder="Ex: 100, 150, 200" />
+                <AppTextField filter="decimal" maxValue={5000} label="Quantidade" value={quantidade} onChangeText={setQuantidade} placeholder="Ex: 100, 150, 200" />
               </View>
               <IconButtonCircle
                 color={alimentoSelecionadoId && quantidade ? colors.primary : colors.disabled}
