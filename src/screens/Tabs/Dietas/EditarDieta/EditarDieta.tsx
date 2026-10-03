@@ -43,14 +43,14 @@ export default function EditarDieta() {
       <View style={styles.content}>
         <AppCard>
           <View style={{ gap: spacing.md }}>
-            <AppTextField label="Nome da Dieta" value={nome} onChangeText={setNome} />
-            <AppTextField label="Descrição" value={descricao} onChangeText={setDescricao} multiline numberOfLines={3} />
-            <AppTextField label="Meta Calórica (kcal)" value={calorias} onChangeText={setCalorias} keyboardType="numeric" />
+            <AppTextField filter="texto" label="Nome da Dieta" value={nome} onChangeText={setNome} />
+            <AppTextField filter="descricao" label="Descrição" value={descricao} onChangeText={setDescricao} multiline numberOfLines={3} />
+            <AppTextField filter="inteiro" maxValue={10000} label="Meta Calórica (kcal)" value={calorias} onChangeText={setCalorias} />
 
             <Text style={styles.sectionTitle}>Macronutrientes (gramas)</Text>
-            <AppTextField label="Proteínas" value={proteinas} onChangeText={setProteinas} keyboardType="numeric" />
-            <AppTextField label="Carboidratos" value={carboidratos} onChangeText={setCarboidratos} keyboardType="numeric" />
-            <AppTextField label="Gorduras" value={gorduras} onChangeText={setGorduras} keyboardType="numeric" />
+            <AppTextField filter="decimal" maxValue={1000} label="Proteínas" value={proteinas} onChangeText={setProteinas} />
+            <AppTextField filter="decimal" maxValue={1000} label="Carboidratos" value={carboidratos} onChangeText={setCarboidratos} />
+            <AppTextField filter="decimal" maxValue={1000} label="Gorduras" value={gorduras} onChangeText={setGorduras} />
 
             <View style={styles.switchRow}>
               <View style={styles.switchLabel}>
