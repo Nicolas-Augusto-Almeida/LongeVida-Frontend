@@ -35,8 +35,8 @@ export default function EditarPerfilProfissional() {
           </View>
 
           <View style={{ gap: spacing.md, marginTop: spacing.lg }}>
-            <AppTextField label="Especialidade" value={especialidade} onChangeText={setEspecialidade} />
-            <AppTextField
+            <AppTextField filter="nome" maxLength={40} label="Especialidade" value={especialidade} onChangeText={setEspecialidade} />
+            <AppTextField filter="descricao"
               label="Descrição"
               value={descricao}
               onChangeText={setDescricao}
