@@ -43,7 +43,7 @@ export default function DetalheTreino() {
         </AppCard>
 
         <View style={{ gap: spacing.sm }}>
-          <AppButton title="Editar Treino" color={colors.secondary} icon={<Feather name="edit-2" size={20} color={colors.white} />} />
+          <AppButton title="Editar Treino" color={colors.secondary} icon={<Feather name="edit-2" size={20} color={colors.white} />} onPress={() => router.push(`/(tabs)/treinos/editar/${treino.id}`)} />
           <AppButton title="Excluir Treino" variant="outlined" color={colors.destructive} icon={<Feather name="trash-2" size={20} color={colors.destructive} />} />
           <AppButton title="Publicar Treino" icon={<Feather name="globe" size={20} color={colors.white} />} />
         </View>

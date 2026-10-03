@@ -46,7 +46,7 @@ export default function MinhasDietas() {
               <IconButtonCircle color={colors.primary} accessibilityLabel="Ver dieta" onPress={() => router.push(`/(tabs)/dietas/${dieta.id}`)}>
                 <Feather name="eye" size={22} color={colors.white} />
               </IconButtonCircle>
-              <IconButtonCircle color={colors.secondary} accessibilityLabel="Editar dieta">
+              <IconButtonCircle color={colors.secondary} accessibilityLabel="Editar dieta" onPress={() => router.push(`/(tabs)/dietas/editar/${dieta.id}`)}>
                 <Feather name="edit-2" size={22} color={colors.white} />
               </IconButtonCircle>
               <IconButtonCircle color={colors.destructive} accessibilityLabel="Excluir dieta">

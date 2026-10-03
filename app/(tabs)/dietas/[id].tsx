@@ -53,7 +53,7 @@ export default function DetalheDieta() {
         </AppCard>
 
         <View style={{ gap: spacing.sm }}>
-          <AppButton title="Editar Dieta" color={colors.secondary} icon={<Feather name="edit-2" size={20} color={colors.white} />} />
+          <AppButton title="Editar Dieta" color={colors.secondary} icon={<Feather name="edit-2" size={20} color={colors.white} />} onPress={() => router.push(`/(tabs)/dietas/editar/${dieta.id}`)} />
           <AppButton title="Excluir Dieta" variant="outlined" color={colors.destructive} icon={<Feather name="trash-2" size={20} color={colors.destructive} />} />
           <AppButton title="Publicar Dieta" icon={<Feather name="globe" size={20} color={colors.white} />} />
         </View>

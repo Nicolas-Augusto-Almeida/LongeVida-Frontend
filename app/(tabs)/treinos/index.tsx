@@ -45,7 +45,7 @@ export default function Treinos() {
               <IconButtonCircle color={colors.secondary} accessibilityLabel="Ver treino" onPress={() => router.push(`/(tabs)/treinos/${treino.id}`)}>
                 <Feather name="eye" size={22} color={colors.white} />
               </IconButtonCircle>
-              <IconButtonCircle color={colors.primary} accessibilityLabel="Editar treino">
+              <IconButtonCircle color={colors.primary} accessibilityLabel="Editar treino" onPress={() => router.push(`/(tabs)/treinos/editar/${treino.id}`)}>
                 <Feather name="edit-2" size={22} color={colors.white} />
               </IconButtonCircle>
               <IconButtonCircle color={colors.destructive} accessibilityLabel="Excluir treino">
