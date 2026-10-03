@@ -12,5 +12,7 @@ export const styles = StyleSheet.create({
   mutedText: { fontSize: fontSize.sm, color: colors.mutedForeground },
   infoRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   infoValue: { fontSize: fontSize.md, fontWeight: '700', color: colors.foreground },
-  leftAlignedBtn: { justifyContent: 'flex-start', paddingLeft: 20 },
+  // O botão é uma coluna: alignItems controla o eixo horizontal (esquerda) e
+  // justifyContent precisa continuar 'center' para o texto ficar no meio na vertical.
+  leftAlignedBtn: { alignItems: 'flex-start', justifyContent: 'center', paddingLeft: 20 },
 });
