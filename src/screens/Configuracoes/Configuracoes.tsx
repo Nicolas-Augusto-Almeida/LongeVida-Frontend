@@ -43,7 +43,7 @@ export default function Configuracoes() {
                 <Feather name="droplet" size={22} color={colors.secondary} />
                 <Text style={styles.fieldLabel}>Meta de Água (ml)</Text>
               </View>
-              <AppTextField label="" value={metaAgua} onChangeText={setMetaAgua} keyboardType="numeric" />
+              <AppTextField filter="inteiro" maxValue={10000} label="" value={metaAgua} onChangeText={setMetaAgua} />
             </View>
 
             <AppDivider style={{ marginVertical: 4 }} />
@@ -53,7 +53,7 @@ export default function Configuracoes() {
                 <Feather name="zap" size={22} color={colors.primary} />
                 <Text style={styles.fieldLabel}>Meta de Calorias (kcal)</Text>
               </View>
-              <AppTextField label="" value={metaCalorias} onChangeText={setMetaCalorias} keyboardType="numeric" />
+              <AppTextField filter="inteiro" maxValue={10000} label="" value={metaCalorias} onChangeText={setMetaCalorias} />
             </View>
 
             <AppDivider style={{ marginVertical: 4 }} />
@@ -63,7 +63,7 @@ export default function Configuracoes() {
                 <Feather name="activity" size={22} color={colors.secondary} />
                 <Text style={styles.fieldLabel}>Meta de Exercícios (minutos)</Text>
               </View>
-              <AppTextField label="" value={metaExercicios} onChangeText={setMetaExercicios} keyboardType="numeric" />
+              <AppTextField filter="inteiro" maxValue={1440} label="" value={metaExercicios} onChangeText={setMetaExercicios} />
             </View>
           </View>
         </AppCard>
