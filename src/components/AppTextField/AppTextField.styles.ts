@@ -18,4 +18,6 @@ export const styles = StyleSheet.create({
     gap: 8,
   },
   input: { flex: 1, fontSize: fontSize.base, color: colors.foreground },
+  inputRowError: { borderColor: colors.destructive },
+  errorText: { fontSize: fontSize.sm, color: colors.destructive, marginTop: 6 },
 });
