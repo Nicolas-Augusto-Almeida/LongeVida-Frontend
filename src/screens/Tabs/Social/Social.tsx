@@ -82,12 +82,11 @@ export default function Social() {
       <View style={styles.content}>
         <AppCard>
           <View style={styles.filtrosBox}>
-            <AppTextField
+            <AppTextField filter="busca"
               label="Pesquisar profissional"
               value={busca}
               onChangeText={setBusca}
               placeholder="Nome, especialidade ou assunto"
-              autoCapitalize="none"
               returnKeyType="search"
               icon={<Feather name="search" size={20} color={colors.mutedForeground} />}
             />
