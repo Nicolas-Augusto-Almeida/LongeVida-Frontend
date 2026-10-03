@@ -6,6 +6,7 @@ import { AppButton, AppSelect, AppSwitch, AppTextField, IconCircle } from '../..
 import { colors } from '../../../theme/colors';
 import { fontSize, spacing } from '../../../theme/typography';
 import { profissionais, usuarioAtual } from '../../../data/mockData';
+import { emailValido } from '../../../utils/inputFilters';
 
 import { styles } from './Cadastro.styles';
 
@@ -35,7 +36,7 @@ export default function Cadastro() {
 
   const especialidadeFinal = especialidade === 'outra' ? outraEspecialidade.trim() : especialidade;
 
-  const dadosBasicosOk = !!(nome && email && senha && confirmarSenha && idade && senha === confirmarSenha);
+  const dadosBasicosOk = !!(nome && emailValido(email) && senha && confirmarSenha && idade && senha === confirmarSenha);
   const dadosProfissionaisOk = !criarPerfilProfissional || !!(especialidadeFinal && registro.trim());
 
   const handleCadastro = () => {
@@ -76,14 +77,14 @@ export default function Cadastro() {
           </View>
 
           <View style={styles.form}>
-            <AppTextField label="Nome" value={nome} onChangeText={setNome} icon={<Feather name="user" size={20} color={colors.mutedForeground} />} />
-            <AppTextField label="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" icon={<Feather name="mail" size={20} color={colors.mutedForeground} />} />
-            <AppTextField label="Senha" value={senha} onChangeText={setSenha} secureTextEntry icon={<Feather name="lock" size={20} color={colors.mutedForeground} />} />
-            <AppTextField label="Confirmar Senha" value={confirmarSenha} onChangeText={setConfirmarSenha} secureTextEntry icon={<Feather name="lock" size={20} color={colors.mutedForeground} />} />
+            <AppTextField filter="nome" label="Nome" value={nome} onChangeText={setNome} icon={<Feather name="user" size={20} color={colors.mutedForeground} />} />
+            <AppTextField filter="email" label="E-mail" value={email} onChangeText={setEmail} icon={<Feather name="mail" size={20} color={colors.mutedForeground} />} />
+            <AppTextField filter="senha" label="Senha" value={senha} onChangeText={setSenha} secureTextEntry icon={<Feather name="lock" size={20} color={colors.mutedForeground} />} />
+            <AppTextField filter="senha" label="Confirmar Senha" value={confirmarSenha} onChangeText={setConfirmarSenha} secureTextEntry icon={<Feather name="lock" size={20} color={colors.mutedForeground} />} />
             {tentouEnviar && confirmarSenha !== '' && senha !== confirmarSenha && (
               <Text style={styles.erroText}>As senhas não coincidem.</Text>
             )}
-            <AppTextField label="Idade" value={idade} onChangeText={setIdade} keyboardType="numeric" icon={<Feather name="calendar" size={20} color={colors.mutedForeground} />} />
+            <AppTextField filter="inteiro" maxValue={120} label="Idade" value={idade} onChangeText={setIdade} icon={<Feather name="calendar" size={20} color={colors.mutedForeground} />} />
 
             <View style={styles.profissionalToggle}>
               <View style={styles.switchRow}>
@@ -104,16 +105,15 @@ export default function Cadastro() {
 
                 <AppSelect label="Especialidade" value={especialidade} onChange={setEspecialidade} options={ESPECIALIDADES} />
                 {especialidade === 'outra' && (
-                  <AppTextField label="Qual especialidade?" value={outraEspecialidade} onChangeText={setOutraEspecialidade} />
+                  <AppTextField filter="nome" maxLength={40} label="Qual especialidade?" value={outraEspecialidade} onChangeText={setOutraEspecialidade} />
                 )}
-                <AppTextField
+                <AppTextField filter="registro"
                   label="Registro Profissional (CRN, CREF, CRM...)"
                   value={registro}
                   onChangeText={setRegistro}
-                  autoCapitalize="characters"
                   icon={<Feather name="award" size={20} color={colors.mutedForeground} />}
                 />
-                <AppTextField
+                <AppTextField filter="descricao"
                   label="Descrição (opcional)"
                   value={descricao}
                   onChangeText={setDescricao}
