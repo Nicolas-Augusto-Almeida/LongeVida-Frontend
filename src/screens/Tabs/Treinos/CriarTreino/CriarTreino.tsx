@@ -61,8 +61,8 @@ export default function CriarTreino() {
       <View style={styles.content}>
         <AppCard>
           <View style={{ gap: spacing.md }}>
-            <AppTextField label="Nome do Treino" value={nome} onChangeText={setNome} />
-            <AppTextField label="Objetivo" value={objetivo} onChangeText={setObjetivo} />
+            <AppTextField filter="texto" label="Nome do Treino" value={nome} onChangeText={setNome} />
+            <AppTextField filter="texto" maxLength={80} label="Objetivo" value={objetivo} onChangeText={setObjetivo} />
             <AppSelect label="Nível" value={nivel} onChange={setNivel} options={NIVEIS} />
 
             <View style={styles.switchRow}>
@@ -107,16 +107,16 @@ export default function CriarTreino() {
                   </IconButtonCircle>
                 </View>
 
-                <AppTextField label="Nome do Exercício" value={exercicio.nome} onChangeText={(v) => atualizarExercicio(exercicio.id, 'nome', v)} />
+                <AppTextField filter="texto" label="Nome do Exercício" value={exercicio.nome} onChangeText={(v) => atualizarExercicio(exercicio.id, 'nome', v)} />
                 <View style={styles.rowGap}>
                   <View style={{ flex: 1 }}>
-                    <AppTextField label="Séries" value={exercicio.series} onChangeText={(v) => atualizarExercicio(exercicio.id, 'series', v)} keyboardType="numeric" />
+                    <AppTextField filter="inteiro" maxValue={99} label="Séries" value={exercicio.series} onChangeText={(v) => atualizarExercicio(exercicio.id, 'series', v)} />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <AppTextField label="Repetições" value={exercicio.repeticoes} onChangeText={(v) => atualizarExercicio(exercicio.id, 'repeticoes', v)} keyboardType="numeric" />
+                    <AppTextField filter="inteiro" maxValue={999} label="Repetições" value={exercicio.repeticoes} onChangeText={(v) => atualizarExercicio(exercicio.id, 'repeticoes', v)} />
                   </View>
                 </View>
-                <AppTextField label="Grupo Muscular" value={exercicio.grupoMuscular} onChangeText={(v) => atualizarExercicio(exercicio.id, 'grupoMuscular', v)} />
+                <AppTextField filter="nome" maxLength={40} label="Grupo Muscular" value={exercicio.grupoMuscular} onChangeText={(v) => atualizarExercicio(exercicio.id, 'grupoMuscular', v)} />
               </View>
             </View>
           ))}
