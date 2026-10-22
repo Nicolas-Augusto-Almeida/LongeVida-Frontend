@@ -2,43 +2,37 @@
 
 ## Como rodar
 
-Pré-requisitos: Node.js 18+ e o app **Expo Go** no celular (ou emulador
-Android/iOS configurado).
+Pré-requisitos: Node.js 20+, o **backend** em execução (veja o [README da raiz](../README.md)) e o app
+**Expo Go** no celular (ou emulador Android/iOS).
 
 ```bash
-npm install expo
+cp .env.example .env     # ajuste EXPO_PUBLIC_API_URL (emulador Android: http://10.0.2.2:8080;
+                         # celular físico: http://IP_DO_PC:8080)
 npm install
 npx expo start
 ```
 
-Escaneie o QR code com o Expo Go (Android) ou a câmera do iPhone (iOS), ou
-pressione `a` / `i` no terminal para abrir em um emulador.
+Escaneie o QR code com o Expo Go (Android) ou a câmera do iPhone (iOS), ou pressione `a` / `i` no terminal.
 
 ## Estrutura do projeto
 
 ```
-app/                      # Rotas (expo-router, file-based routing)
-  _layout.tsx              # Stack raiz
-  index.tsx                 # Splash screen
-  login.tsx, cadastro.tsx, recuperacao-senha.tsx, primeiro-acesso.tsx
-  (tabs)/                   # Navegação em abas
-    home.tsx
-    dietas/ (index, criar, [id])
-    treinos/ (index, criar, [id])
-    social.tsx
-    perfil.tsx
-  registrar-refeicao.tsx, registrar-atividade.tsx
-  historico.tsx, progresso.tsx
-  profissional/[id].tsx
-  importar-dieta/[id].tsx, importar-treino/[id].tsx
-  editar-perfil-profissional.tsx
-  wearables.tsx, notificacoes.tsx, configuracoes.tsx
+app/                      # Rotas (expo-router): arquivos finos que só reexportam src/screens
+  (tabs)/                 # Abas: home, dietas/, treinos/, social, perfil
+  login, cadastro, recuperacao-senha, primeiro-acesso, editar-perfil, ...
+  profissional/[profissionalId], importar-dieta/[dietaId], importar-treino/[treinoId]
 
 src/
-  components/ui/            # Kit de componentes (Button, TextField, Card, Select...)
-  theme/                     # Cores e tipografia (design tokens)
-  data/mockData.ts           # Dados mockados (substituir pela API no futuro)
+  screens/                # Telas (uma pasta por tela: .tsx + .styles.ts)
+  components/             # Kit de componentes (AppButton, AppTextField, QueryBoundary, FormMessage...)
+  services/               # api.ts (cliente HTTP + JWT), endpoints.ts (rotas), types.ts (contrato), tokenStorage.ts
+  contexts/AuthContext    # sessão do usuário (login, cadastro, logout)
+  hooks/useApiQuery       # carrega dados da API a cada foco da tela
+  utils/                  # filtros de entrada, formatação pt-BR, rótulos
+  theme/                  # Cores e tipografia (design tokens)
 ```
+
+Verificações: `npx tsc --noEmit` e `npx expo export --platform web`.
 
 ## Mapeamento de Requisitos Funcionais (RF) do TCC
 
@@ -51,11 +45,11 @@ src/
 | RF05 — Criar/gerenciar treinos              | `(tabs)/treinos/*`                                        |
 | RF06/RF07 — Registrar refeições e alimentos | `registrar-refeicao.tsx`                                  |
 | RF08 — Registrar atividade física           | `registrar-atividade.tsx`                                 |
-| RF09 — Comunidade / seguir profissionais    | `(tabs)/social.tsx`, `profissional/[id].tsx`              |
-| RF10/RF11 — Visualizar dietas/treinos       | `(tabs)/dietas/[id].tsx`, `(tabs)/treinos/[id].tsx`       |
-| RF12 — Perfil profissional                  | `profissional/[id].tsx`, `editar-perfil-profissional.tsx` |
-| RF13 — Publicar/importar dietas             | `(tabs)/dietas/criar.tsx`, `importar-dieta/[id].tsx`      |
-| RF14 — Publicar/importar treinos            | `(tabs)/treinos/criar.tsx`, `importar-treino/[id].tsx`    |
+| RF09 — Comunidade / seguir profissionais    | `(tabs)/social.tsx`, `profissional/[profissionalId].tsx`  |
+| RF10/RF11 — Visualizar dietas/treinos       | `(tabs)/dietas/[dietaId].tsx`, `(tabs)/treinos/[treinoId].tsx` |
+| RF12 — Perfil profissional                  | `profissional/[profissionalId].tsx`, `editar-perfil-profissional.tsx` |
+| RF13 — Publicar/importar dietas             | `(tabs)/dietas/criar.tsx`, `importar-dieta/[dietaId].tsx` |
+| RF14 — Publicar/importar treinos            | `(tabs)/treinos/criar.tsx`, `importar-treino/[treinoId].tsx` |
 | RF15 — Acompanhar progresso (gráficos)      | `progresso.tsx`                                           |
 | RF16 — Integração com wearables             | `wearables.tsx`                                           |
 | RF17 — Notificações                         | `notificacoes.tsx`                                        |
@@ -68,5 +62,5 @@ src/
   em botões, campos e controles interativos.
 - **RNF05 (compatibilidade Android/iOS):** app construído com React Native +
   Expo, rodando nativamente nas duas plataformas a partir da mesma base de código.
-- Demais RNFs (desempenho, segurança, LGPD etc.) dependem da camada de back-end
-  (Java/Spring Boot + PostgreSQL), fora do escopo desta etapa.
+- Segurança e persistência: ver o README da raiz (JWT, Spring Security, PostgreSQL). LGPD (exclusão de conta)
+  ainda não está implementada.
