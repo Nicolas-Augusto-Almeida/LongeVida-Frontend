@@ -22,6 +22,7 @@ export default function RootLayout() {
           <Stack.Screen name="profissional/[profissionalId]" />
           <Stack.Screen name="importar-dieta/[dietaId]" options={{ presentation: 'modal' }} />
           <Stack.Screen name="importar-treino/[treinoId]" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="editar-perfil" />
           <Stack.Screen name="editar-perfil-profissional" />
           <Stack.Screen name="wearables" />
           <Stack.Screen name="notificacoes" />

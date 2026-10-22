@@ -5,17 +5,23 @@ import { Feather } from '@expo/vector-icons';
 import { AppAvatar, AppButton, AppCard, AppDivider, ConfirmDialog, Screen } from '../../../components';
 import { colors } from '../../../theme/colors';
 import { fontSize, spacing } from '../../../theme/typography';
-import { usuarioAtual } from '../../../data/mockData';
+import { useAuth } from '../../../contexts/AuthContext';
+import { NIVEL_ATIVIDADE_LABEL } from '../../../utils/labels';
+import { decimal } from '../../../utils/format';
 
 import { styles } from './Perfil.styles';
 
 export default function Perfil() {
   const [dialogAberto, setDialogAberto] = useState(false);
+  const { usuario, logout } = useAuth();
 
-  const handleConfirmarLogout = () => {
+  const handleConfirmarLogout = async () => {
     setDialogAberto(false);
+    await logout();
     router.replace('/login');
   };
+
+  if (!usuario) return null;
 
   return (
     <Screen contentStyle={{ paddingBottom: 100 }}>
@@ -26,24 +32,24 @@ export default function Perfil() {
       <View style={styles.content}>
         <AppCard>
           <View style={styles.avatarBlock}>
-            <AppAvatar label={usuarioAtual.nome} size={100} />
-            <Text style={styles.nome}>{usuarioAtual.nome}</Text>
-            <Text style={styles.mutedText}>{usuarioAtual.idade} anos</Text>
+            <AppAvatar label={usuario.nome} size={100} />
+            <Text style={styles.nome}>{usuario.nome}</Text>
+            <Text style={styles.mutedText}>{usuario.idade} anos</Text>
           </View>
 
           <AppDivider />
 
           <View style={{ gap: spacing.md }}>
-            <InfoRow icon="anchor" color={colors.primary} label="Peso" value={`${usuarioAtual.peso} kg`} />
-            <InfoRow icon="bar-chart-2" color={colors.primary} label="Altura" value={`${usuarioAtual.altura} cm`} />
-            <InfoRow icon="activity" color={colors.secondary} label="Nível de Atividade" value={usuarioAtual.nivelAtividade} />
+            <InfoRow icon="anchor" color={colors.primary} label="Peso" value={usuario.peso !== null ? `${decimal(usuario.peso)} kg` : '—'} />
+            <InfoRow icon="bar-chart-2" color={colors.primary} label="Altura" value={usuario.altura !== null ? `${usuario.altura} cm` : '—'} />
+            <InfoRow icon="activity" color={colors.secondary} label="Nível de Atividade" value={usuario.nivelAtividade ? NIVEL_ATIVIDADE_LABEL[usuario.nivelAtividade] : '—'} />
           </View>
         </AppCard>
 
         <View style={{ gap: spacing.sm }}>
-          <AppButton title="Editar Perfil" icon={<Feather name="edit-2" size={20} color={colors.white} />} style={styles.leftAlignedBtn} />
+          <AppButton title="Editar Perfil" icon={<Feather name="edit-2" size={20} color={colors.white} />} onPress={() => router.push('/editar-perfil')} style={styles.leftAlignedBtn} />
 
-          {usuarioAtual.isProfissional && (
+          {usuario.isProfissional && (
             <AppButton
               title="Perfil Profissional"
               color={colors.secondary}
