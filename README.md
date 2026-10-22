@@ -2,12 +2,10 @@
 
 ## Como rodar
 
-Pré-requisitos: Node.js 20+, o **backend** em execução (veja o [README da raiz](../README.md)) e o app
+Pré-requisitos: Node.js 20+, o **backend** em execução e o app
 **Expo Go** no celular (ou emulador Android/iOS).
 
 ```bash
-cp .env.example .env     # ajuste EXPO_PUBLIC_API_URL (emulador Android: http://10.0.2.2:8080;
-                         # celular físico: http://IP_DO_PC:8080)
 npm install
 npx expo start
 ```
@@ -36,24 +34,24 @@ Verificações: `npx tsc --noEmit` e `npx expo export --platform web`.
 
 ## Mapeamento de Requisitos Funcionais (RF) do TCC
 
-| Requisito                                   | Tela(s)                                                   |
-| ------------------------------------------- | --------------------------------------------------------- |
-| RF01 — Cadastro de usuário                  | `cadastro.tsx`                                            |
-| RF02 — Login                                | `login.tsx`                                               |
-| RF03 — Recuperação de senha                 | `recuperacao-senha.tsx`                                   |
-| RF04 — Criar/gerenciar dietas               | `(tabs)/dietas/*`                                         |
-| RF05 — Criar/gerenciar treinos              | `(tabs)/treinos/*`                                        |
-| RF06/RF07 — Registrar refeições e alimentos | `registrar-refeicao.tsx`                                  |
-| RF08 — Registrar atividade física           | `registrar-atividade.tsx`                                 |
-| RF09 — Comunidade / seguir profissionais    | `(tabs)/social.tsx`, `profissional/[profissionalId].tsx`  |
-| RF10/RF11 — Visualizar dietas/treinos       | `(tabs)/dietas/[dietaId].tsx`, `(tabs)/treinos/[treinoId].tsx` |
+| Requisito                                   | Tela(s)                                                               |
+| ------------------------------------------- | --------------------------------------------------------------------- |
+| RF01 — Cadastro de usuário                  | `cadastro.tsx`                                                        |
+| RF02 — Login                                | `login.tsx`                                                           |
+| RF03 — Recuperação de senha                 | `recuperacao-senha.tsx`                                               |
+| RF04 — Criar/gerenciar dietas               | `(tabs)/dietas/*`                                                     |
+| RF05 — Criar/gerenciar treinos              | `(tabs)/treinos/*`                                                    |
+| RF06/RF07 — Registrar refeições e alimentos | `registrar-refeicao.tsx`                                              |
+| RF08 — Registrar atividade física           | `registrar-atividade.tsx`                                             |
+| RF09 — Comunidade / seguir profissionais    | `(tabs)/social.tsx`, `profissional/[profissionalId].tsx`              |
+| RF10/RF11 — Visualizar dietas/treinos       | `(tabs)/dietas/[dietaId].tsx`, `(tabs)/treinos/[treinoId].tsx`        |
 | RF12 — Perfil profissional                  | `profissional/[profissionalId].tsx`, `editar-perfil-profissional.tsx` |
-| RF13 — Publicar/importar dietas             | `(tabs)/dietas/criar.tsx`, `importar-dieta/[dietaId].tsx` |
-| RF14 — Publicar/importar treinos            | `(tabs)/treinos/criar.tsx`, `importar-treino/[treinoId].tsx` |
-| RF15 — Acompanhar progresso (gráficos)      | `progresso.tsx`                                           |
-| RF16 — Integração com wearables             | `wearables.tsx`                                           |
-| RF17 — Notificações                         | `notificacoes.tsx`                                        |
-| RF18 — Configurações / metas diárias        | `configuracoes.tsx`                                       |
+| RF13 — Publicar/importar dietas             | `(tabs)/dietas/criar.tsx`, `importar-dieta/[dietaId].tsx`             |
+| RF14 — Publicar/importar treinos            | `(tabs)/treinos/criar.tsx`, `importar-treino/[treinoId].tsx`          |
+| RF15 — Acompanhar progresso (gráficos)      | `progresso.tsx`                                                       |
+| RF16 — Integração com wearables             | `wearables.tsx`                                                       |
+| RF17 — Notificações                         | `notificacoes.tsx`                                                    |
+| RF18 — Configurações / metas diárias        | `configuracoes.tsx`                                                   |
 
 ## Requisitos Não Funcionais (RNF)
 

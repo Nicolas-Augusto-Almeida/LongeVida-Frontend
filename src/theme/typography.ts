@@ -1,5 +1,3 @@
-// Tamanhos de fonte generosos (base 18px, como no protótipo original) para
-// atender ao RNF01 — interface acessível para o público idoso.
 export const fontSize = {
   xs: 13,
   sm: 15,
@@ -25,5 +23,4 @@ export const radius = {
   full: 999,
 } as const;
 
-// Altura mínima de 56px para toques confortáveis (alvo acessível >= 44pt).
 export const touchTarget = 56;
