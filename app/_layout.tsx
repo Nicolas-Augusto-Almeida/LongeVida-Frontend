@@ -17,9 +17,9 @@ export default function RootLayout() {
         <Stack.Screen name="registrar-atividade" options={{ presentation: 'modal' }} />
         <Stack.Screen name="historico" />
         <Stack.Screen name="progresso" />
-        <Stack.Screen name="profissional/[id]" />
-        <Stack.Screen name="importar-dieta/[id]" options={{ presentation: 'modal' }} />
-        <Stack.Screen name="importar-treino/[id]" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="profissional/[profissionalId]" />
+        <Stack.Screen name="importar-dieta/[dietaId]" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="importar-treino/[treinoId]" options={{ presentation: 'modal' }} />
         <Stack.Screen name="editar-perfil-profissional" />
         <Stack.Screen name="wearables" />
         <Stack.Screen name="notificacoes" />
