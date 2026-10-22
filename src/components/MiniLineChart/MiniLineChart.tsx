@@ -18,8 +18,6 @@ interface Props {
   height?: number;
 }
 
-// Gráfico de linha leve, sem dependências externas de charting (que são
-// web-only), pensado para caber bem em telas de smartphone.
 export default function MiniLineChart({ categories, series, height = 200 }: Props) {
   const width = 320;
   const paddingLeft = 36;
@@ -33,13 +31,13 @@ export default function MiniLineChart({ categories, series, height = 200 }: Prop
   const max = Math.max(...allValues);
   const range = max - min || 1;
 
-  const toX = (i: number) => paddingLeft + (i / (categories.length - 1)) * chartWidth;
+  const toX = (i: number) =>
+    categories.length > 1 ? paddingLeft + (i / (categories.length - 1)) * chartWidth : paddingLeft + chartWidth / 2;
   const toY = (v: number) => paddingTop + chartHeight - ((v - min) / range) * chartHeight;
 
   return (
     <View>
       <Svg width="100%" height={height} viewBox={`0 0 ${width} ${height}`}>
-        {/* Linhas de grade horizontais */}
         {[0, 0.5, 1].map((f) => (
           <Line
             key={f}
@@ -70,7 +68,7 @@ export default function MiniLineChart({ categories, series, height = 200 }: Prop
 
         {categories.map((cat, i) => (
           <SvgText
-            key={cat}
+            key={`${cat}-${i}`}
             x={toX(i)}
             y={height - 4}
             fontSize={11}
